@@ -15,7 +15,7 @@ public class Order {
     private double amount;
     @ManyToOne
     private Customer customer;
-    private String status; // e.g., "Pending", "Shipped"
+    private String status;
     private LocalDate orderDate;
 
     public Order() {}
