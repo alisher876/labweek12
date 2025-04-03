@@ -12,7 +12,7 @@ public class Employee {
     private Long id;
     private String name;
     private String role;
-    private double salary; // New field
+    private double salary;
 
     public Employee() {}
     public Employee(String name, String role, double salary) {
