@@ -12,7 +12,7 @@ public class Customer {
     private Long id;
     private String name;
     private String email;
-    private String region; // New field
+    private String region;
 
     public Customer() {}
     public Customer(String name, String email, String region) {
