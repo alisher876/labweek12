@@ -14,7 +14,7 @@ public class Project {
     private String name;
     @ManyToOne
     private Employee employee;
-    private String description; // New field
+    private String description;
 
     public Project() {}
     public Project(String name, Employee employee, String description) {
