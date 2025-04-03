@@ -14,26 +14,26 @@ public class ProjectController {
     private ProjectRepository projectRepository;
 
     @PostMapping
-    @CacheEvict(value = "projects", allEntries = true) // Clear cache on update
+    @CacheEvict(value = "projects", allEntries = true) 
     public Project createProject(@RequestBody Project project) {
         return projectRepository.save(project);
     }
 
     @GetMapping
-    @Cacheable("projects") // Cache the result
+    @Cacheable("projects")
     public List<Project> getAllProjects() {
         return projectRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    @Cacheable(value = "projects", key = "#id") // Cache by ID
+    @Cacheable(value = "projects", key = "#id")
     public Project getProjectById(@PathVariable Long id) {
         return projectRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Project not found with id: " + id));
     }
 
     @PutMapping("/{id}")
-    @CacheEvict(value = "projects", key = "#id") // Clear specific cache
+    @CacheEvict(value = "projects", key = "#id") 
     public Project updateProject(@PathVariable Long id, @RequestBody Project projectDetails) {
         Project project = projectRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Project not found with id: " + id));
@@ -44,7 +44,7 @@ public class ProjectController {
     }
 
     @DeleteMapping("/{id}")
-    @CacheEvict(value = "projects", key = "#id") // Clear specific cache
+    @CacheEvict(value = "projects", key = "#id") 
     public void deleteProject(@PathVariable Long id) {
         if (!projectRepository.existsById(id)) {
             throw new ResourceNotFoundException("Project not found with id: " + id);
@@ -53,7 +53,7 @@ public class ProjectController {
     }
 
     @GetMapping("/search")
-    @Cacheable(value = "projects", key = "#keyword") // Cache by keyword
+    @Cacheable(value = "projects", key = "#keyword") 
     public List<Project> searchProjectsByDescription(@RequestParam String keyword) {
         return projectRepository.findByDescriptionContaining(keyword);
     }
